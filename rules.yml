@@ -1,0 +1,15 @@
+simple:
+  directory: "."
+  push:
+    actions:
+      - "echo 'hello world'"
+
+extended:
+  token: "def456"
+  directory: "."
+  push:
+    actions:
+      - "jekyll build"
+      - "echo 'hello world'"
+    return: "Push handler for extended worked!"
+    on_error: "extended failed. Reason: {error_msg}"

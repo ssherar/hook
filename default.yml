@@ -1,0 +1,14 @@
+token: "defaulttoken"
+all:
+  success: "Request worked"
+  on_error: "Shit failed {error_msg}"
+create:
+  pulL_repo: true
+delete:
+  pull_repo: true
+pull_request:
+  pull_repo: true
+ping:
+  success: "PONG: {datetime}"
+push:
+  pull_repo: true
