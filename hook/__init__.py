@@ -9,8 +9,8 @@ CURRENT_DIR = os.getcwd()
 if not os.path.exists(CONFIG_DIR):
     os.makedirs(CONFIG_DIR)
 
-for file, path in {"default.yml": DEFAULTS_PATH,
-                   "rules.yml": USER_PATH}.iteritems():
+for file, path in {"hook/default.yml": DEFAULTS_PATH,
+                   "hook/rules.yml": USER_PATH}.iteritems():
     import shutil
     if not os.path.exists(path):
         shutil.copy(file, path)

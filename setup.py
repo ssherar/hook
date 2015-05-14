@@ -1,8 +1,12 @@
 from setuptools import setup, find_packages
+from pkg_resources import Requirement, resource_filename
+import os
+
+filename = resource_filename(Requirement.parse("hook"), "default.yml")
 
 setup(
     name = "hook",
-    version = "0.0.1",
+    version = "0.0.2",
 
     author = "Sam Sherar",
     author_email = "sbsherar@gmail.com",
@@ -26,8 +30,8 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4'
     ],
-    
+
     data_files = {
-        'config': '*.yml'
+        '': ['*.yml']
     }
 )
