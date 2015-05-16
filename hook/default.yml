@@ -9,6 +9,6 @@ delete:
 pull_request:
   pull_repo: true
 ping:
-  success: "PONG: {datetime}"
+  success: "PONG: {repository.id}"
 push:
   pull_repo: true

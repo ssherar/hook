@@ -4,6 +4,15 @@ import pprint
 import copy
 
 
+class DottedDict(dict):
+
+    __setattr__ = dict.__setitem__
+    __delattr__ = dict.__delitem__
+
+    def __getattr__(self, attr):
+        return self.get(attr)
+
+
 class Rule(object):
     """An individual rule for a repository.
 
@@ -84,8 +93,11 @@ class CommandSet(object):
 
     def execute_hook(self, hook):
         rule = self.__dict__.get(hook, None)
+        success = None
         try:
             rule.execute_actions(self.directory)
-            return rule.success
+            success = rule.success
         except Exception, e:
             print e
+
+        return success
