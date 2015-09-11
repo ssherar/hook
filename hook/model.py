@@ -53,9 +53,15 @@ class Rule(object):
 
     def execute_actions(self, cwd):
         """Iterates over the actions and executes them in order."""
+        self._execute_globals(cwd)
         for action in self.actions:
             print "executing {}".format(action)
             p = subprocess.Popen(action, shell=True, cwd=cwd)
+            p.wait()
+
+    def _execute_globals(self, cwd):
+        if self.pull_repo:
+            p = subprocess.Popen(["git", "pull"], cwd=cwd)
             p.wait()
 
 
