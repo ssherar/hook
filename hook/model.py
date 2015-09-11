@@ -2,6 +2,9 @@ from . import CURRENT_DIR
 import subprocess
 import pprint
 import copy
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class DottedDict(dict):
@@ -55,12 +58,13 @@ class Rule(object):
         """Iterates over the actions and executes them in order."""
         self._execute_globals(cwd)
         for action in self.actions:
-            print "executing {}".format(action)
+            logger.info("executing {}".format(action))
             p = subprocess.Popen(action, shell=True, cwd=cwd)
             p.wait()
 
     def _execute_globals(self, cwd):
         if self.pull_repo:
+            logger.info("Triggering git pull command")
             p = subprocess.Popen(["git", "pull"], cwd=cwd)
             p.wait()
 
@@ -101,9 +105,11 @@ class CommandSet(object):
         rule = self.__dict__.get(hook, None)
         success = None
         try:
+            logger.debug("Executing hook with {}".format(self.dictionary))
             rule.execute_actions(self.directory)
             success = rule.success
         except Exception, e:
-            print e
+            logger.error("Error occured: {}".format(
+                e.getMessage()))
 
         return success
