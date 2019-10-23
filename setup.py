@@ -19,7 +19,7 @@ setup(
 
     install_requires = [
         "pyyaml==3.11",
-        "flask==0.10.1"
+        "flask==1.0"
     ],
 
     classifiers = [
