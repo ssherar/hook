@@ -18,7 +18,7 @@ setup(
     long_description = open("README.md").read(),
 
     install_requires = [
-        "pyyaml==3.11",
+        "pyyaml==5.4",
         "flask==0.10.1"
     ],
 
